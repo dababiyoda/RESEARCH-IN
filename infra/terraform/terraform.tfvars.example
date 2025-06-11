@@ -1,0 +1,17 @@
+# Supabase credentials
+supabase_access_token    = "sbp_xxxxx"
+supabase_organization_id = "org_xxxxx"
+supabase_db_password     = "strongpassword"
+
+# Fly.io credentials
+fly_access_token = "flypat_xxxxx"
+fly_org          = "personal"
+
+# Cloudflare credentials
+cloudflare_api_token = "cf_token"
+cloudflare_account_id = "cf_account"
+cloudflare_zone_id    = "cf_zone"
+
+# Optional customizations
+# ipfs_gateway_domain = "ipfs.example.com"
+# ipfs_dnslink        = "/ipfs/your_cid"

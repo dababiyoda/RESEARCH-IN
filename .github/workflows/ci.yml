@@ -1,0 +1,17 @@
+name: CI
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  terraform:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v2
+      - name: Terraform Init (no backend)
+        run: terraform -chdir=infra/terraform init -backend=false -input=false
+      - name: Terraform Validate
+        run: terraform -chdir=infra/terraform validate -no-color
