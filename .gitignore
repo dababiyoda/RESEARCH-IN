@@ -14,4 +14,3 @@ Cargo.lock
 *.tfstate
 *.tfstate.*
 .terraform/
-.terraform.lock.hcl

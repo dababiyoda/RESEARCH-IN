@@ -12,6 +12,6 @@ jobs:
       - name: Setup Terraform
         uses: hashicorp/setup-terraform@v2
       - name: Terraform Init (no backend)
-        run: terraform -chdir=infra/terraform init -backend=false -input=false
+        run: terraform -chdir=infra/terraform init -backend=false -input=false -upgrade
       - name: Terraform Validate
         run: terraform -chdir=infra/terraform validate -no-color
