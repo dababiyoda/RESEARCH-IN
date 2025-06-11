@@ -1,0 +1,13 @@
+[package]
+name = "ingest-core"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+tokio = { version = "1", features = ["full"] }
+reqwest = { version = "0.11", features = ["json", "multipart"] }
+rust-ipfs = "0.9"
+qdrant-client = "1"
+apache-tika-server-client = "0.2"
+sentence-transformers = { version = "0.1", default-features = false, features = ["all-mpnet-base-v2", "burn-tch"] }
+md5 = "0.7"

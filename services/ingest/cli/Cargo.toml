@@ -1,0 +1,8 @@
+[package]
+name = "ingest-cli"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+ingest-core = { path = "../core" }
+tokio = { version = "1", features = ["full"] }
