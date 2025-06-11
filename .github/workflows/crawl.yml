@@ -1,0 +1,15 @@
+name: Crawl
+on:
+  schedule:
+    - cron: '0 3 * * *'
+  workflow_dispatch:
+
+jobs:
+  ingest:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: dtolnay/rust-toolchain@stable
+      - name: Run ingest
+        run: cargo run --manifest-path services/ingest/Cargo.toml -- seed/initial_cids.txt
+
