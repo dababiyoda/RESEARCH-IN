@@ -1,0 +1,17 @@
+# Node
+node_modules
+.pnpm
+pnpm-lock.yaml
+npm-debug.log*
+yarn.lock
+
+# Rust
+target/
+Cargo.lock
+**/*.rs.bk
+
+# Terraform
+*.tfstate
+*.tfstate.*
+.terraform/
+.terraform.lock.hcl

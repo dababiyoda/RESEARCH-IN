@@ -1,0 +1,9 @@
+{
+  "name": "open-research-nexus",
+  "private": true,
+  "workspaces": [
+    "apps/*",
+    "services/*",
+    "packages/*"
+  ]
+}
