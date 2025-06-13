@@ -1,0 +1,62 @@
+# .github/workflows/deploy-frontend.yml
+
+name: Deploy Frontend (Web App)
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'apps/web/**' # Trigger on changes in the web app directory
+      - 'packages/**' # Trigger on changes in shared packages
+
+jobs:
+  deploy:
+    name: Build and Deploy to Vercel
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20' # Use a recent Node.js version
+          cache: 'pnpm' # Cache pnpm dependencies
+
+      - name: Install pnpm
+        run: npm install -g pnpm
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Setup Turborepo
+        run: pnpm dlx turbo login # Or configure via TURBO_TOKEN secret
+
+      - name: Build Web App with Turborepo Remote Cache
+        # Using --remote-only ensures build happens only if cache is missed
+        run: pnpm turbo build --filter=web --remote-only
+
+      # The Turborepo build command above caches the build outputs.
+      # Vercel's action below will pick up the build artifacts from the workspace.
+
+      - name: Deploy to Vercel
+        uses: vercel/actions@v1
+        with:
+          # Vercel Project ID and Org ID are required for production deployments
+          # VERCEL_TOKEN is automatically picked up from environment
+          vercel-project-id: ${{ secrets.VERCEL_PROJECT_ID }}
+          vercel-org-id: ${{ secrets.VERCEL_ORG_ID }}
+          # Production deployment is automatic on push to main branch when using Vercel action default settings.
+          # You can configure environments and aliases via vercel.json or Vercel UI.
+        env:
+          VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+          # Include other environment variables needed for the Vercel build if any
+          # E.g., environment variables needed for the web app at runtime
+          # SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+          # SUPABASE_ANON_KEY: ${{ secrets.SUPABASE_ANON_KEY }}
+          # QDRANT_CLUSTER_URL: ${{ secrets.QDRANT_CLUSTER_URL }}
+          # QDRANT_API_KEY: ${{ secrets.QDRANT_API_KEY }}
+          # TYPESENSE_CLUSTER_HOST: ${{ secrets.TYPESENSE_CLUSTER_HOST }}
+          # TYPESENSE_API_KEY: ${{ secrets.TYPESENSE_API_KEY }}
