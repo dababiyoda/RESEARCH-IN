@@ -1,0 +1,6 @@
+{
+  "name": "@open-research-nexus/utils",
+  "version": "0.0.1",
+  "main": "priority.ts",
+  "types": "priority.ts"
+}

@@ -33,6 +33,12 @@ variable "supabase_region" {
   type        = string
 }
 
+variable "supabase_db_plan" {
+  description = "Plan for the Supabase database (e.g., 'free')."
+  type        = string
+  default     = "free"
+}
+
 # Qdrant Cloud Configuration Variables
 variable "qdrant_cloud_api_key" {
   description = "API key for authenticating with Qdrant Cloud."
@@ -40,9 +46,33 @@ variable "qdrant_cloud_api_key" {
   sensitive   = true # Mark as sensitive to prevent printing in plan/apply outputs
 }
 
+variable "qdrant_plan" {
+  description = "Plan for the Qdrant cluster"
+  type        = string
+  default     = "starter"
+}
+
+variable "qdrant_region" {
+  description = "Region for the Qdrant cluster"
+  type        = string
+  default     = "us-east-1"
+}
+
 # Typesense Cloud Configuration Variables
 variable "typesense_cloud_api_key" {
   description = "API key for authenticating with Typesense Cloud."
   type        = string
   sensitive   = true # Mark as sensitive to prevent printing in plan/apply outputs
+}
+
+variable "typesense_plan" {
+  description = "Plan for the Typesense cluster"
+  type        = string
+  default     = "starter"
+}
+
+variable "typesense_region" {
+  description = "Region for the Typesense cluster"
+  type        = string
+  default     = "us-east-1"
 }

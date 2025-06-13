@@ -1,3 +1,3 @@
 export default function Home() {
-  return <div>Hello from Next.js 15</div>;
+  return <div>Welcome to Open-Research Nexus</div>;
 }
