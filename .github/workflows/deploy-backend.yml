@@ -1,0 +1,65 @@
+# .github/workflows/deploy-backend.yml
+
+name: Deploy Backend (Ingestion Service)
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'apps/ingestion/**' # Trigger on changes in the ingestion service directory
+      - 'packages/**'       # Trigger on changes in shared packages
+
+jobs:
+  deploy:
+    name: Build and Deploy to Fly.io
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20' # Use a recent Node.js version
+          cache: 'pnpm' # Cache pnpm dependencies
+
+      - name: Install pnpm
+        run: npm install -g pnpm
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Setup Turborepo
+        run: pnpm dlx turbo login # Or configure via TURBO_TOKEN secret
+
+      - name: Build Ingestion Service with Turborepo Remote Cache
+        # Using --remote-only ensures build happens only if cache is missed
+        run: pnpm turbo build --filter=ingestion --remote-only
+
+      # The build output for the ingestion service should be within apps/ingestion/build or similar,
+      # according to Turborepo outputs. The Fly.io action typically builds a Docker image
+      # or uses a buildpack based on the source code context in apps/ingestion.
+      # Ensure your Fly.io configuration (fly.toml) in apps/ingestion points to the correct build output/entrypoint.
+
+      - name: Deploy to Fly.io
+        uses: superfly/flyctl-action@v1.7 # Use the official flyctl action
+        with:
+          # Path to the application directory containing the fly.toml file
+          path: apps/ingestion
+          # The Fly.io API token from your secrets
+          args: 'deploy --remote-only' # Deploy command and arguments
+                                       # --remote-only can sometimes be useful if your build process is separate
+                                       # but Fly.io buildpacks/Dockerfile often handle the build step.
+                                       # Adapt 'args' based on your fly.toml configuration and deployment strategy.
+        env:
+          FLY_API_TOKEN: ${{ secrets.FLY_API_TOKEN }}
+          # Include other environment variables needed for the Fly.io service
+          # E.g., database connection strings, API keys, etc.
+          # SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+          # SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
+          # QDRANT_CLUSTER_URL: ${{ secrets.QDRANT_CLUSTER_URL }}
+          # QDRANT_API_KEY: ${{ secrets.QDRANT_API_KEY }}
+          # TYPESENSE_CLUSTER_HOST: ${{ secrets.TYPESENSE_CLUSTER_HOST }}
+          # TYPESENSE_API_KEY: ${{ secrets.TYPESENSE_API_KEY }}
