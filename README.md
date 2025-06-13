@@ -1,13 +1,26 @@
 # Open-Research Nexus
 
+[![CI](https://github.com/dababiyoda/RESEARCH-IN/actions/workflows/ci.yml/badge.svg)](https://github.com/dababiyoda/RESEARCH-IN/actions/workflows/ci.yml)
+[![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
+
 The Open-Research Nexus is an open-source initiative aiming to build a collaborative platform for researchers. It facilitates the discovery, analysis, and discussion of research papers and datasets, leveraging modern technologies for efficient data processing and retrieval.
+
+## Quickstart
+
+```bash
+git clone <repo>
+cd RESEARCH-IN
+pnpm install
+pnpm dev
+```
+
 
 ## Monorepo Structure
 
 This project is organized as a monorepo using Turborepo to manage dependencies and scripts across multiple applications and packages. The key directories at the root are:
 
 * **`apps/`**: Contains independent applications and services. Each directory within `apps/` represents a distinct deployable unit.
-  * `apps/web`: The main user-facing web application (e.g., built with React/Vue).
+  * `apps/web`: The main user-facing web application (e.g., built with Next.js).
   * `apps/ingestion`: A backend service responsible for processing and indexing research data (e.g., built with Rust).
 * **`packages/`**: Contains reusable libraries and code shared between applications and services.
   * `packages/db`: Database schema definitions, migrations, and client code (e.g., for Supabase).
@@ -20,7 +33,7 @@ This project is organized as a monorepo using Turborepo to manage dependencies a
 
 The project utilizes a diverse technology stack to cover frontend, backend, data storage, search, vector indexing, and infrastructure management:
 
-* **Frontend:** React or Vue (specific choice TBD)
+* **Frontend:** Next.js
 * **Backend Services:** Rust (for performance-critical tasks like ingestion)
 * **Database & Auth:** Supabase (PostgreSQL, Authentication, Storage)
 * **Vector Database:** Qdrant

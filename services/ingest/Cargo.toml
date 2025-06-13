@@ -4,3 +4,17 @@ version = "0.1.0"
 edition = "2021"
 
 [dependencies]
+actix-web = "4"
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+
+[lib]
+name = "ingest"
+path = "src/lib.rs"
+
+[[bin]]
+name = "ingest-bin"
+path = "src/main.rs"
+
+[dev-dependencies]
+actix-rt = "2"

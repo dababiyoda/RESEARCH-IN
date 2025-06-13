@@ -57,33 +57,30 @@ provider "typesense" {
 }
 
 
-# --- Module Calls (Placeholders) ---
-# TODO: Develop and call dedicated modules for each service cluster.
-# These modules will encapsulate the resource definitions for each component.
 
-# Provision Supabase Project and initial configuration
-# module "supabase_cluster" {
-#   source = "./modules/supabase_cluster" # Path to your Supabase module
-#
-#   project_name    = var.project_name
-#   project_id      = var.supabase_project_id # May not be needed for creation, depends on provider resource
-#   cloud_provider  = var.supabase_cloud_provider
-#   region          = var.supabase_region
-#   # ... other configurations from variables or locals
-# }
+# --- Module Calls ---
 
-# Provision Qdrant Cloud Cluster
-# module "qdrant_cluster" {
-#   source = "./modules/qdrant_cluster" # Path to your Qdrant module
-#
-#   api_key = var.qdrant_cloud_api_key # Pass sensitive key if needed by module
-#   # ... other Qdrant specific configurations
-# }
+module "supabase_cluster" {
+  source = "./modules/supabase"
 
-# Provision Typesense Cloud Cluster
-# module "typesense_cluster" {
-#   source = "./modules/typesense_cluster" # Path to your Typesense module
-#
-#   api_key = var.typesense_cloud_api_key # Pass sensitive key if needed by module
-#   # ... other Typesense specific configurations
-# }
+  project_name = var.project_name
+  region       = var.supabase_region
+  db_plan      = var.supabase_db_plan
+}
+
+module "qdrant_cluster" {
+  source = "./modules/qdrant"
+
+  project_name = var.project_name
+  qdrant_plan  = var.qdrant_plan
+  qdrant_region = var.qdrant_region
+}
+
+module "typesense_cluster" {
+  source = "./modules/typesense"
+
+  project_name          = var.project_name
+  typesense_plan        = var.typesense_plan
+  typesense_region      = var.typesense_region
+  typesense_cloud_api_key = var.typesense_cloud_api_key
+}
