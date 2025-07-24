@@ -1,0 +1,12 @@
+{
+  "mission": "Build free global research nexus",
+  "plans": [ "terraform", "ingest", "search", "ui", "social", "ops" ],
+  "ci": "github",
+  "dailyTasks": [ "crawl_arxiv", "run_tests" ],
+  "acceptance": [
+    "search_latency<1000ms",
+    "upload_index<=300s",
+    "pwa_offline_ok",
+    "owasp_clean"
+  ]
+}
