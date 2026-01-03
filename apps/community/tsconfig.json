@@ -8,6 +8,7 @@
     "skipLibCheck": true,
     "baseUrl": ".",
     "paths": {
+      "@open-research-nexus/utils": ["../../packages/utils/index.ts"],
       "@open-research-nexus/utils/*": ["../../packages/utils/*"]
     }
   },

@@ -1,6 +1,8 @@
 import express from 'express';
 import jwt from 'jsonwebtoken';
-import { userWeight } from '@open-research-nexus/utils/priority';
+import { isValidOrcid, userWeight } from '@open-research-nexus/utils';
+
+const JWT_SECRET = process.env.JWT_SECRET || 'development-secret';
 
 const app = express();
 app.use(express.json());
@@ -10,7 +12,7 @@ function auth(req: express.Request, res: express.Response, next: express.NextFun
   const token = req.headers.authorization?.split(' ')[1];
   if (!token) return res.sendStatus(401);
   try {
-    (req as any).user = jwt.verify(token, 'secret');
+    (req as any).user = jwt.verify(token, JWT_SECRET);
     next();
   } catch {
     res.sendStatus(401);
@@ -20,7 +22,7 @@ function auth(req: express.Request, res: express.Response, next: express.NextFun
 // ORCID validation middleware
 function validateOrcid(req: express.Request, res: express.Response, next: express.NextFunction) {
   const orcid = req.body.orcid as string;
-  if (!/^\d{4}-\d{4}-\d{4}-\d{4}$/.test(orcid)) {
+  if (typeof orcid !== 'string' || !isValidOrcid(orcid)) {
     return res.status(400).json({ error: 'Invalid ORCID format' });
   }
   next();
