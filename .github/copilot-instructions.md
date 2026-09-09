@@ -1,0 +1,1 @@
+Read `AGENTS.md` before material work. Canonical rule: **Preserve the intended effect. Do not literalize the metaphor.** Research mechanically real routes, source provenance and counterevidence; search/adapt existing technology before recommending new architecture; never confuse source analogy with achieved capability.
