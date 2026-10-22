@@ -1,3 +1,5 @@
+Before new or resumed UNIIMENTE work in this fork, read `AGENTS.md` and its pinned collaboration guide. Refresh the founder Discussion, work board, current heads and overlapping claims. Preserve existing local and nested instructions. Coordination grants no runtime or external-effect authority.
+
 Read `AGENTS.md` before material work. Canonical rule: **Preserve the intended effect. Do not literalize the metaphor.** Research mechanically real routes, source provenance and counterevidence; search/adapt existing technology before recommending new architecture; never confuse source analogy with achieved capability.
 
 ## Full-machine execution correction (2026-10-01)

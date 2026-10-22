@@ -1,3 +1,5 @@
+> **UNIIMENTE work in this fork:** Before new or resumed work, read [the founder Discussion](https://github.com/dababiyoda/uniimente-kernel/discussions/89), [the pinned collaboration SOP](https://github.com/dababiyoda/uniimente-kernel/blob/2ccbbe2bf553df45df3dac777dc45f825760dd45/docs/collaboration/START_HERE.md), and [live work claims/handoffs](https://github.com/dababiyoda/uniimente-kernel/issues/96). Inspect relevant open PRs and exact heads, identify your actual session and bounded files/interfaces, and acknowledge overlaps before editing. Preserve the local instructions below. This addition governs Alfonso's UNIIMENTE work in this fork; do not send this fork-specific rollout upstream. The source package is draft #193 pending adoption; metadata checks are not locks or authority.
+
 # RESEARCH-IN Agent Entry Contract
 
 RESEARCH-IN is a research source/capability lineage under UNIIMENTE. It is not an independent constitutional authority.
@@ -37,7 +39,9 @@ Preserve source provenance, dates, licenses, maintenance status, counterevidence
 
 Research may recommend; it does not authorize execution or capability promotion. New tools or generated artifacts receive no inherited authority.
 
-## UNIIMENTE position — 2026-09-30 (read before substantive work)
+## Historical project-position snapshot — 2026-09-30
+
+The branch, node, metric and handoff destinations below are preserved historical observations. Refresh current claims and acknowledged integration destinations through kernel issue #96 before acting. The full-machine correction remains binding.
 
 This repository participates in UNIIMENTE as the research corpus/substrate organ. It owns domain capability, not sovereignty.
 
